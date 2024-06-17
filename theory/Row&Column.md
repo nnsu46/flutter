@@ -85,7 +85,7 @@ void main() {
  1. main 함수를 제외한 main dart에 있는 모든 코드 삭제
  2. runApp 안에 MaterialApp위젯을 넣은 후
  3. home: HomeScreen이라는 위젯을 만들고
- 4.  screen 폴더 안에  home_screen.dart라는 파일을 만든 다음
+ 4. screen 폴더 안에  home_screen.dart라는 파일을 만든 다음
  5. HomeScreen 클래스를 생성해두면 된다.
 
 
@@ -197,11 +197,135 @@ child: Container(
 
 - Expanded 위젯은 Flexible 위젯을 상속받고 있다.
 		정의된 곳으로 이동: Control + B
+
+`fit: FlexFit.tight`
+- Flexible Widget이 차지할 수 있는 크기와 똑같이 차지한다.
+	- Expeanded와 같은 결과를 도출할 수 있다.
+	- 즉, **Expanded Widget은 Flexible Widget에 Fit 파라미터를 flexfit.tight 옵션을 지정해주는 것과 동일**하다.
+`fit: FlexFit.loose,`
+- Flexible Widget이 배정된 만큼의 공간을 차지하지만 나머지  Expended 자식 위젯들이 남는 공간을 가져가지 못한다.
+- Flexible Widget의 자식 위젯은 배정된 사이즈만 차지하게 된다.
+- Fit 파라미터를 조절함으로써 Flexible Widget이 차지하는 크기만큼 내부(자식)위젯이 차지가능 여부를 결정할 수 있다.
+
+```Dart
+
+import 'package:flutter/material.dart';  
+import 'package:row_and_column/const/colors.dart';  
+  
+class HomeScreen extends StatelessWidget {  
+  const HomeScreen({super.key});  
+  
+  @override  
+  Widget build(BuildContext context) {  
+    return Scaffold(  
+        body: SafeArea(  
+          child: Container(  
+            color: Colors.black,  
+            height: double.infinity,  
+            child: Column(  
+              children: [  
+                Flexible(  
+                  flex: 2,  
+                  fit: FlexFit.loose,  
+                  child: Container(  
+                    height: 50.0,  
+                    width: 50.0,  
+                    color: Colors.red,  
+                  ),  
+                ),  
+                Expanded(  
+                  flex: 3,  
+                  child: Container(  
+                    height: 50.0,  
+                    width: 50.0,  
+                    color: Colors.orange,  
+                  ),  
+                ),  
+                Expanded(  
+                  child: Container(  
+                    height: 50.0,  
+                    width: 50.0,  
+                    color: Colors.yellow,  
+                  ),  
+                ),  
+              ]  
+            ),  
+          ),  
+        ),  
+      );  
+  }  
+}
+```
+
 ### Challenge
 
 ### Challenge 해답
 
-
+```Dart
+import 'package:flutter/material.dart';  
+import 'package:row_and_column/const/colors.dart';  
+  
+class HomeScreen extends StatelessWidget {  
+  const HomeScreen({super.key});  
+  
+  @override  
+  Widget build(BuildContext context) {  
+    return Scaffold(  
+      body: SafeArea(  
+        child: Column(  
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,  
+          children: [  
+            Row(  
+              mainAxisAlignment: MainAxisAlignment.spaceAround,  
+              children: colors  
+                  .map(  
+                    (e) => Container(  
+                      height: 50.0,  
+                      width: 50.0,  
+                      color: e,  
+                    ),  
+                  )  
+                  .toList(),  
+            ),  
+            Row(  
+              mainAxisAlignment: MainAxisAlignment.center,  
+              children: [  
+                Container(  
+                  height: 50.0,  
+                  width: 50.0,  
+                  color: Colors.orange,  
+                )  
+              ]  
+            ),  
+            Row(  
+              mainAxisAlignment: MainAxisAlignment.end,  
+              children: colors  
+                  .map(  
+                    (e) => Container(  
+                  height: 50.0,  
+                  width: 50.0,  
+                  color: e,  
+                ),  
+              )  
+                  .toList(),  
+            ),  
+            Row(  
+                mainAxisAlignment: MainAxisAlignment.center,  
+                children: [  
+                  Container(  
+                    height: 50.0,  
+                    width: 50.0,  
+                    color: Colors.green,  
+                  )  
+                ]  
+            ),  
+          ],  
+        ),  
+      ),  
+    );  
+  }  
+}
+```
 
 
 
