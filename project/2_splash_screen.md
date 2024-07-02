@@ -27,7 +27,8 @@
 	사용자 검증, 어떤 화면을 보여줄 지 정하는 로직을 실행한다거나, 코드들을 실행하는 동안 사용자한테 앱이 멈춘 게 아닌 무언가 작업을 하고 있다는 걸 보여주기 위해 보여주는 화면
 ### YAML Structure
 
-사람이 쉽게 일고 쓸 수 있는 데이터 직렬화(컴퓨터가 읽을 수 있는 쉬운 구조로 변경) 언어. 주로 설정 파일이나 데이터 전송 형식으로 사용되며 들여쓰기를 통해 계층 구조를 표현한다.
+- 사람이 쉽게 알고 쓸 수 있는 데이터 직렬화(컴퓨터가 읽을 수 있는 쉬운 구조로 변경) 언어이다.
+- 주로 설정 파일이나 데이터 전송 형식으로 사용되며 들여쓰기를 통해 계층 구조를 표현한다.
 
 #### Key / Value Pair
 
@@ -128,7 +129,7 @@ app_name: hello_world # 이것도 주석입니다.
 
 ### Asset 파일 pubspec.yaml에 등록하기
 
-앱에서 사용할 무언가를 집어 넣는 공간을 Asset  폴더라고 이름을 일반적으로 지음
+- 앱에서 사용할 무언가를 집어 넣는 공간을 Asset  폴더라고 이름을 일반적으로 짓는다.
 
 asset/ img/logo.png
 경로에 이미지 넣고 나서
@@ -142,7 +143,7 @@ uses-material-design: true
 
 ### Image 위젯 사용해보기
 
-``Image.asset('asset/img/logo.png')
+`Image.asset('asset/img/logo.png')`
 
 ### Hex Code를 사용해서 색상 지정하기
 
@@ -151,7 +152,7 @@ uses-material-design: true
 - 16진수를 flutter에서 표현하는 방법 : 0x
 - ff : 알파, 투명도. RGB값에 해당되는 정확한 값을 입력 가능하다.
 
-``Color(0xFF335CB0)
+`Color(0xFF335CB0)`
 
 ### Column 위젯 사용해보기
 
@@ -241,13 +242,13 @@ children: [
 ],
 ```
 - SizedBox: 높이가 있는 박스
-	기본적으로 투명 색이기 때문에 패딩과 똑같은 효과를 준다.
-		패딩보다 조금 더 효율이 좋다.
+	- 기본적으로 투명 색이기 때문에 패딩과 똑같은 효과를 준다.
+	- 패딩보다 조금 더 효율이 좋다.
 ### Show Context Action 사용해보기
 - 삭제하고 싶은 위젯 위에 커서를 올린 후 오른쪽 클릭
 	Remove this widget 클릭
-		물론 Remove가 실행 안 되는 경우도 존재.
-		모든 옵션이 모든 위젯을 대상으로 하는 건 아니다.
+	- 물론 Remove가 실행 안 되는 경우도 존재한다.
+	- 모든 옵션이 모든 위젯을 대상으로 하는 건 아니다.
 -  Wrap With Widget
 
 
@@ -259,7 +260,7 @@ import 'package:flutter/material.dart';
 void main() {  
   runApp(  
     MaterialApp(  
-      home: HomeScreen(),  
+      home: HomeScreen(),  // HomeScreen 위젯을 홈으로 설정
     ),  
   );  
 }  
@@ -271,22 +272,21 @@ class HomeScreen extends StatelessWidget {
   @override  
   Widget build(BuildContext context) {  
     return Scaffold(  
-  
-        /// 335CB0  
+        /// 배경 색상 설정 (색상 코드: 335CB0)
         backgroundColor: Color(0xFF335CB0),  
         body: Padding(  
             padding: EdgeInsets.symmetric(  
-              horizontal: 32.0,  
+              horizontal: 32.0,  // 좌우 여백 설정
             ),  
             child: Column(  
-              mainAxisAlignment: MainAxisAlignment.center,  
+              mainAxisAlignment: MainAxisAlignment.center,  // 세로축 가운데 정렬
               children: [  
                 Image.asset(  
-                  'asset/img/logo.png',  
+                  'asset/img/logo.png',  // 이미지 경로 설정
                 ),  
-                SizedBox(height: 28.0),  
+                SizedBox(height: 28.0),  // 이미지와 로딩 인디케이터 사이 간격 설정
                 CircularProgressIndicator(  
-                  color: Colors.white,  
+                  color: Colors.white,  // 로딩 인디케이터 색상 설정
                 ),  
               ],  
             )  
