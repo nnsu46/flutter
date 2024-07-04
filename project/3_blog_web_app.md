@@ -30,7 +30,7 @@
 - PATCH 버전: 하위 호환성을 유지하면서 기존 기능의 버그를 수정할 때 올린다. 새로운 기능이나 API 변경 없이 오로지 버그 수정 관련 업데이트이다.
 - 앞의 숫자부터 뒤로 갈수록 덜 중요한 업데이트라 할 수 있다.
 - 4.0.0 버전은 5.0.0버전이 나올 때까지 모든 버전과 호환이 된다. (4.999.999라도)
-- 즉, Major 버전 업데이트가 아니라면 패키지 사용 방법이 변하지 않는다고 봐도 무방하다. 그래서 **"^"(캐럿)**을 사용해서 **Major 버전 업데이트 외의 모든 버전**을 최신 버전으로 유지 할 수 있다.
+- 즉, Major 버전 업데이트가 아니라면 패키지 사용 방법이 변하지 않는다고 봐도 무방하다. 그래서 "^"(캐럿)을 사용해서 **Major 버전 업데이트 외의 모든 버전**을 최신 버전으로 유지 할 수 있다.
 - ^4.3.2
 	- 4.3.3 버전이 출시될 경우 자동으로 최신버전을 다운받아 사용한다.
 	- 4.4.0 버전이 출시될 경우 자동으로 최신버전을 다운받아 사용한다.
@@ -162,13 +162,15 @@ actions: [
 ```Dart
 import 'package:flutter/material.dart';  
 import 'package:webview_flutter/webview_flutter.dart';  
-  
+
+// 홈 URL 정의
 final homeUrl = Uri.parse('https://blog.codefactory.ai');  
-  
+
 class HomeScreen extends StatelessWidget {  
+  // WebViewController 초기화 및 설정
   WebViewController controller = WebViewController()  
-    ..setJavaScriptMode(JavaScriptMode.unrestricted)  
-    ..loadRequest(homeUrl);  
+    ..setJavaScriptMode(JavaScriptMode.unrestricted)  // JavaScript 모드 설정
+    ..loadRequest(homeUrl);  // 홈 URL 로드
   
   HomeScreen({super.key});  
   
@@ -176,22 +178,22 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {  
     return Scaffold(  
       appBar: AppBar(  
-        backgroundColor: Colors.orange,  
-        title: Text('Code Factory'),  
-        centerTitle: true,  
+        backgroundColor: Colors.orange,  // AppBar 배경 색상 설정
+        title: Text('Code Factory'),  // AppBar 제목 설정
+        centerTitle: true,  // 제목 가운데 정렬
         actions: [  
           IconButton(  
               onPressed: () {  
-                controller.loadRequest(homeUrl);  
+                controller.loadRequest(homeUrl);  // 홈 버튼 클릭 시 홈 URL 다시 로드
               },              
               icon: Icon(  
-                Icons.home,  
+                Icons.home,  // 홈 아이콘
               )
              )        
            ],      
           ),      
           body: WebViewWidget(  
-	        controller: controller,  
+	        controller: controller,  // WebView 위젯에 WebViewController 설정
       ),   
     ); 
  }
